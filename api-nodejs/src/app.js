@@ -2,6 +2,7 @@ import express from 'express';
 import conectDataBase from './config/mongoConect.js';
 import livro from './routes/livroRoute.js';
 import autor from './routes/autorRoute.js';
+import { errorBase } from './middleware/error.js';
 
 const app = express();
 app.use(express.json());
@@ -21,5 +22,7 @@ conect.once('open', () => {
 app.get('/', (req, res) => {
   res.status(200).send({ message: 'Bem vindo a Alura cursos' });
 });
+
+app.use(errorBase);
 
 export default app;
